@@ -3,36 +3,40 @@
 
 #!/usr/bin/python
 # Filename : helloworld.py	
+#简明Python教程
 
-#py1: 严格对齐,print前面不能有空格
+#py1: 严格对齐,print前面不能有空格, Python 是区分大小写的
 #print ('Hello World')
 
 #py2: 连接多个字符串,保留全部空格
 #print('The quick brown fox', 'jumps over  ', 'the lazy dog', "ces")
 
-#py3:
-print('1024 * 768 = ', 1024 * 768 )
+#py3: 没有单独的 long 类型。 int 类型可以指任何大小的整数
+#print('1024 * 768 = ', 1024 * 768 )
 
-#py4:
-#name = input()
-#print('hello,', name)
+#py4: print可以通过 end参数 指定其应以什么字符结尾，默认是换行‘\n’
+# print('a', end='')
+# print('b', end='输入')
+# name = input()
+# print('hello,', name)
 
-#py5:
+#py5:双引号和单引号括起的字符串其工作机制完全相同
 #name = input('please enter your name: ')
 #print('hello,', name)
 
 #py6: 比如\n表示换行，\t表示制表符，字符\本身也要转义，所以\\表示的字符就是\
-#print( 1.23e9 )
-#print('I\'m ok.')
+# print( 1.23e9 )
+# print('I\'m ok.')
 
-#py7:用r''表示''内部的字符串默认不转义
-#print(r'\\\t\\')
+#py7:用r''表示''内部的字符串默认不转义，指定一个原始（Raw） 字符
+# print(r'\\\t\\')
 
 #py8:用'''...'''的格式表示多行内容,输出中文需要文档修改为UTF-8格式。
-#print('''
-#line1
-#line2中文测试
-#line3''')
+# print('''这是一段多行字符串。
+# This is the second line.
+# "What's your name?," I asked.
+# He said "Bond, James Bond."
+# ''')
 
 #py9: 布尔值及运算
 #print (3>5)
@@ -44,6 +48,13 @@ print('1024 * 768 = ', 1024 * 768 )
 #else:
     #print('teenager')
 
+# 运算符与表达式
+# +，-，*，**，/,//,%,<<,>>
+# >,>=,<,<=,==,!=
+# &,|,^,~     位运算(与，或，异或，取反)
+# not,or,and  布尔(非，或，与)
+#in, not in, is, is not 比较，包括成员资格测试和身份测试
+
 #py10: 动态语言可以把任意数据类型赋值给变量
 #a = 123 # a是整数
 #print(a)
@@ -51,9 +62,9 @@ print('1024 * 768 = ', 1024 * 768 )
 #print(a)
 
 #py11: 除/ ，地板除// ， 余数%
-#print(10 // 3)  #3
-#print(10 / 3)   #3.3333
-#print(10 % 3)   #1
+#print(10 // 3) 
+#print(10 / 3)
+#print(10 % 3)
 
 #编码问题:
 #1:用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，
@@ -105,12 +116,22 @@ print('1024 * 768 = ', 1024 * 768 )
 #print(type(g),len(g), g)	#<class 'str'>  id=215903184&index=0&st=52&sid=95000&i
 
 
-#import chardet 导入chardet模块库
+#导入某个模块库  import chardet
 #for i in ['abc123','中国']:
     #print (i,chardet.detect(i))
 
 
-
+#格式化方法, {0}这种数字只是一个可选选项，但是可以帮助识别第几个参数。
+# age = 20
+# name = 'Swaroop'
+# print('{0} was {1} years old when he wrote this book'.format(name, age))
+# # 基于关键词。输出 'Swaroop wrote A Byte of Python'
+# print('{name} wrote {book}'.format(name='Swaroop', book='A Byte of Python'))
+# # 对于浮点数保留小数点(.)后三位，输出: 0.333
+# print('{0:.3f}'.format(1.0/3))
+# # 使用下划线填充文本，并保持文字处于中间位置
+# # 使用 (^) 定义 '___hello___'字符串长度为 11。输出: ___hello___
+# print('{0:_^11}'.format('hello'))
 
 
 
