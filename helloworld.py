@@ -231,11 +231,130 @@
 # for i in ['abc123','中国']:
 #     print (i,chardet.detect(i))
 
+# # py:sys 模块包含了与 Python 解释器及其环境相关的功能，也就是所谓的系统功能（system）。
+# import sys
+# import os;
+# print('The command line arguments are:')
+# for i in sys.argv:
+#     print(i)
+# print(os.getcwd())
+# print('\n\nThe PYTHONPATH is', sys.path, '\n')
+
+#类似于C++的命名空间  from sys import argv，不建议使用 #从sys中导出argv
+# from helloworld import say_hi, __version__  #导出say_hi及__version__
+# from helloworld import *   #导出helloworld中的全部函数及变量，不包括双下划线开头的变量如:__version__
+
+# # py:编写你自己的模块
+#引入helloworld.py文件，每一个 Python 程序同时也是一个模块，可以直接在file2中引入file1进来使用它的函数及变量。
+# #file1: F:\Python\Project\helloworld.py
+# def say_hi():
+#     if __name__ == '__main__':
+#         print('run by itself')
+#     else:
+#         print('run by another module')
+# __version__ = '0.1'
+#
+# #file2: F:\Python\Project\mymodule_demo.py
+# import helloworld
+# helloworld.say_hi()
+# print('file2:', __name__)
+# print('file1:', helloworld.__name__, helloworld.__version__)
+
+# # py:dir函数导出返回由对象所定义的名称列表。 如果这一对象是一个模块，则该列表会包括函数内所定义的函数、类与变量。
+# #如果参数是模块名称，函数将返回这一指定模块的名称列表
+# #如果没有提供参数，函数将返回当前模块的名称列表。
+# import string
+# a = 5
+# print(dir())
+# del a
+# print(dir())
+# print(dir(string))
+
+# 包是指一个包含模块与一个特殊的 __init__.py 文件的文件夹，后者向 Python 表明这一文件夹是特别的，因为其包含了 Python 模块。
+# # 创建一个名为“world”的包，其中还包含着“asia”及其它子包，同时这些子包都包含了诸如“india”等模块。
+# <some folder present in the sys.path>/
+# - world/
+# 	- __init__.py
+# 	- asia/
+# 		- __init__.py
+# 		- india/
 
 
+# # # # # # # # # #     数据结构相关问题    # # # # # # # # # #
+# Python 中有四种内置的数据结构
+# ——列表（List）、元组（Tuple）、字典（Dictionary）和集合（Set）
+# 列表是可变的，元组是不可变的。
 
+# 列表：常用函数：sort(), append('*')
+# shoplist = ['apple', 'mango', 'carrot', 'banana']
+# for item in shoplist:
+#     print(item, end=' ')
 
+# 元组：zoo = ('python', 'elephant', 'penguin'
+    # 只拥有一个元素的元组singleton = (2, )
 
+# 字典：常用函数：items()
+# Address = {
+#     'Swaroop': 'swaroop@swaroopch.com',
+#     'Larry': 'larry@wall.org',
+#     'Matsumoto': 'matz@ruby-lang.org',
+#     'Spammer': 'spammer@hotmail.com'
+# }
+# print("Swaroop's address is", Address['Swaroop'])
+# for name, address in Address.items():
+#     print('Contact {} at {}'.format(name, address))
 
+# 序列：序列的主要功能是资格测试（也就是in与not in表达式）和索引操作，它们能够允许我们直接获取序列中的特定项目。
+# # 要注意的是切片操作会在开始处返回 start，并在 end 前面的位置结束工作。也就是说，序列切片将包括起始位置，但不包括结束位置。
+# # 比如shoplist[1:3]表示从下标1开始到3结束，但是不包括下标3。结果为['mango', 'carrot']。
+# # shoplist[-1]  指的是序列的最后一个项目。
+# shoplist = ['apple', 'mango', 'carrot', 'banana']
+# name = 'swaroop'
+# # 索引或“下标（Subscription）”操作符 #
+# print('Item 0 is', shoplist[0])
+# # Slicing on a list #
+# print('Item 1 to -1 is', shoplist[1:-1])
+# # 从某一字符串中切片 #
+# print('characters 2 to end is', name[2:])
+# # 可以在切片操作中提供第三个参数，这一参数将被视为切片的步长（Step）
+# print(shoplist[::1])
+# print(shoplist[::2])
+# print(shoplist[::-1])
 
+# 集合：集合（Set）是简单对象的无序集合（Collection）。当集合中的项目存在与否比起次序或其出现次数更加重要时，我们就会使用集合。
+# bri = set(['brazil', 'russia', 'india'])
+# print('india' in bri) #True
+# bric = bri.copy()
+# bric.add('china')
+# print(bric)         #{'russia', 'india', 'china', 'brazil'}
+# print(bric.issuperset(bri))   #True
+# print(bri & bric)             #{'russia', 'india', 'brazil'}
 
+# py:必须使用切片操作来制作复杂对象的副本。如果你仅仅是将一个变量名赋予给另一个名称，那么它们类似与引用，都指向同一个对象。
+# print('Simple Assignment')
+# shoplist = ['apple', 'mango', 'carrot', 'banana']
+# # mylist 只是指向同一对象的另一种名称
+# mylist = shoplist
+# # mylistcopy 通过生成一份完整的切片制作一份列表的副本
+# mylistcopy = shoplist[:]
+# # 我购买了第一项项目，所以我将其从列表中删除
+# del shoplist[0]
+# print('shoplist is', shoplist)
+# print('mylist is', mylist)
+# print('mylistcopy is', mylistcopy)
+
+# py:字符串函数
+# # startwith  方法用于查找字符串是否以给定的字符串内容开头。
+# # find  方法用于定位字符串中给定的子字符串的位置
+# # in   运算符用以检查给定的字符串是否是查询的字符串中的一部分。
+# # str  类同样还拥有一个简洁的方法用以联结序列中的项目，其中字符串将会作为每一项目之间的分隔符，并以此生成并返回一串更大的字符串。
+# name = 'Swaroop'
+# if name.startswith('Swa'):
+#     print('Yes, the string starts with "Swa"')
+# if 'a' in name:
+#     print('Yes, it contains the string "a"')
+# if name.find('war') != -1:
+#     print('Yes, it contains the string "war"')
+# delimiter = '_*test*_'
+# mylist = ['Brazil', 'Russia', 'India', 'China']
+# print(delimiter.join(mylist))
