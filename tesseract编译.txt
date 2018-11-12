@@ -1,0 +1,7 @@
+https://www.cnblogs.com/yxwkf/p/5395994.html
+https://blog.csdn.net/u012234115/article/details/80552179
+
+
+
+OpenCV有所有的lib库
+F:\GitHub\OpenCV\opencv\sources\3rdparty\libpng 。。。
