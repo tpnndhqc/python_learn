@@ -358,3 +358,263 @@
 # delimiter = '_*test*_'
 # mylist = ['Brazil', 'Russia', 'India', 'China']
 # print(delimiter.join(mylist))
+
+# 一个简单的示例程序
+# import os
+# import time
+# # 1. 需要备份的文件与目录将被指定在一个列表中。
+# # 例如在 Windows 下：
+# source = ['"D:\\1样本\\test"']
+# # 又例如在 Mac OS X 与 Linux 下：
+# # source = ['/Users/swa/notes']
+# # 在这里要注意到我们必须在字符串中使用双引号,用以括起其中包含空格的名称。
+# # 2. 备份文件必须存储在一个主备份目录中
+# # 例如在 Windows 下：
+# target_dir = 'D:\\新建文件夹 (2)\\Backup'
+# # 又例如在 Mac OS X 和 Linux 下：
+# # target_dir = '/Users/swa/backup'
+# # 要记得将这里的目录地址修改你将使用的路径,如果目标目录不存在则创建目录
+# if not os.path.exists(target_dir):
+#     os.mkdir(target_dir) # 创建目录
+# # 3. 备份文件将打包压缩成 zip 文件。
+# # 4. 将当前日期作为主备份目录下的子目录名称
+# today = target_dir + os.sep + time.strftime('%Y%m%d')
+# # 将当前时间作为 zip 文件的文件名
+# now = time.strftime('%H%M%S')
+# # zip 文件名称格式
+# target = today + os.sep + now + '.zip'
+# # 如果子目录尚不存在则创建一个
+# if not os.path.exists(today):
+#     os.mkdir(today)
+# print('Successfully created directory', today)
+# # 5. 我们使用 zip 命令将文件打包成 zip 格式
+# zip_command = 'zip -r {0} {1}'.format(target,' '.join(source))
+# # 运行备份
+# print('Zip command is:')
+# print(zip_command)
+# print('Running:')
+# if os.system(zip_command) == 0:
+#     print('Successful backup to', target)
+# else:
+#     print('Backup FAILED')
+
+
+# # # # # # # # # #     面向对象编程    # # # # # # # # # #
+# # py: self 关键字
+# Python 中的  self  相当于 C++ 中的指针以及 Java 与 C# 中的  this  指针。
+# 假设你有一个  MyClass  的类，这个类下有一个实例  myobject  。
+# 当你调用一个这个对象的方法，如  myobject.method(arg1, arg2)  时，
+# Python 将会自动将其转换成  MyClass.method(myobject, arg1, arg2)  ——这就是  self  的全部特殊之处所在。
+
+# # py: 类 和 方法, __init__ 初始化方法
+# class Person:
+#     def __init__(self, name):
+#         self.name = name
+#     def say_hi(self):
+#         print('Hello, my name is', self.name)
+# p = Person('sping')
+# p.say_hi()
+# print(p)
+
+# #  py: 类变量与对象变量
+# 参照 F:\工作\Python\Project\Robot.py
+# 类变量（Class Variable）是共享的（Shared）——它们可以被属于该类的所有实例访问。
+# 该类变量只拥有一个副本，当任何一个对象对类变量作出改变时，发生的变动将在其它所有实例中都会得到体现。
+# 对象变量（Object variable）由类的每一个独立的对象或实例所拥有。
+# 在这种情况下，每个对象都拥有属于它自己的字段的副本，也就是说，它们不会被共享，也不会以任何方式与其它不同实例中的相同名称的字段产生关联
+
+# #  py: 继承
+# 参照 F:\工作\Python\Project\oop_subclass.py
+
+
+# # # # # # # # # #     输入与输出    # # # # # # # # # #
+# # py: 分别通过  input()  函数与  print()  函数来实现 输入与输出
+
+# # py: 文件读写
+# 创建 file  类的对象，并使用它的  read 、readline 、write、close 方法来打开或使用文件，并对它们进行读取或写入。
+# 参考 F:\工作\Python\Project\io_using_file.py
+
+# # py: 持久化存储对象 Pickle
+# 需要通过  open  以写入（write）二进制（binary）模式打开文件，
+# 调用  pickle  模块的  dump  函数将对象写入到文件。这一过程被称作封装（Pickling）
+# 通过  pickle  模块的  load  函数接收返回的对象。这个过程被称作拆封（Unpickling）
+
+# # py: Unicode
+# 如果我们需要使用 unicode 类型，它全都以字母 u 开头
+# # encoding=utf-8
+# import io
+# f = io.open("abc.txt", "wt", encoding="utf-8")
+# f.write(u"Imagin 中文的 language here")
+# f.close()
+# text = io.open("abc.txt", encoding="utf-8").read()
+# print(text)
+
+# # # # # # # # # #     异常    # # # # # # # # # #
+# # py: 通过  raise  语句来抛出异常
+# # encoding=UTF-8
+# class ShortInputException(Exception):
+#     '''一个由用户定义的异常类'''
+#     def __init__(self, length, atleast):
+#         Exception.__init__(self)
+#         self.length = length
+#         self.atleast = atleast
+# try:
+#     text = input('Enter something --> ')
+#     if len(text) < 3:
+#         raise ShortInputException(len(text), 3)
+#     # 其他工作能在此处继续正常运行
+# except EOFError:
+#     print('Why did you do an EOF on me?')
+# except ShortInputException as ex:
+#     print(('ShortInputException: The input was ' +
+#     '{0} long, expected at least {1}')
+#     .format(ex.length, ex.atleast))
+# else:
+#     print('No exception was raised.')
+
+
+# 确保对象被正确关闭，无论是否会发生异常？这可以通过  finally  块来完成
+# # 方式一：Try ... Finally  在try块中获取资源，然后在finally块中释放资源是一种常见的模式
+# import sys
+# import time
+# f = None
+# try:
+#     f = open('poem.txt')
+#     while True:
+#         line = f.readline()
+#         if len(line) == 0:
+#             break
+#         print(line, end='')
+#         sys.stdout.flush()
+#         # time.sleep(1)
+# except IOError:
+#     print("Could not find file poem.txt")
+# except KeyboardInterrupt:
+#     print("!! You cancelled the reading from the file.")
+# finally:
+#     if f:
+#         f.close()
+# print("(Cleaning up: Closed the file)")
+#
+# # 方式二： with  语句
+# with open("poem.txt") as f:
+#     for line in f:
+#         print(line, end='')
+#
+
+# # # # # # # # # #     标准库    # # # # # # # # # #
+# # 探索标准库的最好方法是阅读由 Doug Hellmann 撰写的优秀的Python Module of theWeek 系列
+# # os  模块用以和操作系统交互。 主驱动器：os.getenv('HOMEDRIVE'), 主文件夹：os.getenv('HOMEPATH')
+# # platform  模块用以获取平台 操作系统 的信息，
+# # logging  模块用来记录（Log）信息
+# import os
+# import platform
+# import logging
+#
+# #输出正在使用的操作系统版本如： Windows-7-6.1.7601-SP1
+# print(platform.platform())
+# if platform.platform().startswith('Windows'):
+#     logging_file = os.path.join(os.getenv('HOMEDRIVE'), os.getenv('HOMEPATH'), 'test.log')
+# else:
+#     logging_file = os.path.join(os.getenv('HOME'), 'test.log')
+# print("Logging to", logging_file)
+#
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s : %(levelname)s : %(message)s',
+#     filename=logging_file,
+#     filemode='w',
+# )
+# logging.debug("Start of the program")
+# logging.info("Doing something")
+# logging.warning("Dying now")
+
+# # # # # # # # # #     其他    # # # # # # # # # #
+# # py: 使用元组返回多个不同的值
+# def get_error_details():
+#     return (2, 'details')
+# errnum, errstr = get_error_details()
+# print(errnum)
+# print(errstr)
+
+# # py: Python 中交换两个变量的最快方法
+# a = 5; b = 8
+# a, b = b, a
+# print(a, b)
+
+# # py: 特殊方法
+# __init__(self, ...)
+# 这一方法在新创建的对象被返回准备使用时被调用。
+# __del__(self)
+# 这一方法在对象被删除之前调用（它的使用时机不可预测，所以避免使用它）
+# __str__(self)
+# 当我们使用  print  函数时，或  str()  被使用时就会被调用。
+# __lt__(self, other)
+# 当小于运算符（<）被使用时被调用。类似地，使用其它所有运算符（+、> 等等）
+# 时都会有特殊方法被调用。
+# __getitem__(self, key)
+# 使用  x[key]  索引操作时会被调用。
+# __len__(self)
+# 当针对序列对象使用内置  len()  函数时会被调用
+
+# # py: Lambda 表格
+# lambda  语句可以创建一个新的函数对象。
+# 从本质上说， lambda  需要一个参数，后跟一个表达式作为函数体，这一表达式执行的值将作为这个新函数的返回值
+# points = [  {'x': 2, 'y': 3},
+#             {'x': 4, 'y': 1} ]
+# points.sort(key=lambda i: i['y'])
+# print(points)
+
+# # py: 列表推导 #输出 [6, 8]
+# listone = [2, 3, 4]
+# listtwo = [2*i for i in listone if i > 2]
+# print(listtwo)
+
+# # py: 在函数中接收元组与字典
+# 因为我们在 args 变量前添加了一个 * 前缀，函数的所有其它的额外参数都将传递到 args 中，并作为一个元组予以储存。
+# 如果采用的是 ** 前缀，则额外的参数将被视为字典的键值—值配对。
+# def powersum(power, *args):
+#     '''Return the sum of each argument raised to the specified power.'''
+#     total = 0
+#     for i in args:
+#         total += pow(i, power)
+#     return total
+# print(powersum(2, 3, 4))
+# print(powersum(2, 10))
+
+# # py: 装饰器
+# # 装饰器（Decorators）是应用包装函数的快捷方式。这有助于将某一功能与一些代码一遍又一遍地“包装”。
+# from time import sleep
+# from functools import wraps
+# import logging
+# logging.basicConfig()
+# log = logging.getLogger("retry")
+#
+# def retry(f):
+#     @wraps(f)
+#     def wrapped_f(*args, **kwargs):
+#         MAX_ATTEMPTS = 5
+#         for attempt in range(1, MAX_ATTEMPTS + 1):
+#             try:
+#                 return f(*args, **kwargs)
+#             except:
+#                 log.exception("Attempt %s/%s failed : %s",
+#                               attempt,MAX_ATTEMPTS, (args, kwargs))
+#                 sleep(10 * attempt)
+#         log.critical("All %s attempts failed : %s",
+#                      MAX_ATTEMPTS,(args, kwargs))
+#         return wrapped_f
+# counter = 0
+#
+# @retry
+# def save_to_database(arg):
+#     print("Write to a database or make a network call or etc.")
+#     print("This will be automatically retried if exception is thrown.")
+#     global counter
+#     counter += 1
+#     # 这将在第一次调用时抛出异常
+#     # 在第二次运行时将正常工作（也就是重试）
+#     if counter < 2:
+#         raise ValueError(arg)
+#     if __name__ == '__main__':
+#         save_to_database("Some bad value")
