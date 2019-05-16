@@ -6,8 +6,9 @@
 #简明Python教程
 
 # # # # # # # # # #     基本问题    # # # # # # # # # #
-# # py1: 严格对齐,print前面不能有空格, Python 是区分大小写的
+# py1: 严格对齐,print前面不能有空格, Python 是区分大小写的
 # print ('Hello World')
+# C:\Users\Sping>python D:\Python\github\python_learn\test.py
 
 # # py2: 连接多个字符串,保留全部空格
 # print('The quick brown fox', 'jumps over  ', 'the lazy dog', "ces")
@@ -39,6 +40,16 @@
 # He said "Bond, James Bond."
 # ''')
 
+"""
+这是多行注释，用三个双引号
+Hello, World!
+"""
+
+'''
+这是多行注释，用三个单引号
+Hello, World!
+'''
+
 # # py9: 布尔值及运算
 # print (3>5)
 # print (True and False)
@@ -62,10 +73,10 @@
 # a = 'ABC' # a变为字符串
 # print(a)
 
-# # py11: 除/ ，地板除// ， 余数%
-# print(10 // 3)
-# print(10 / 3)
-# print(10 % 3)
+# # py11: 整除取整数// ， 除/ ，整除取余数%
+print(10 // 3)
+print(10 / 3)
+print(10 % 3)
 
 # # py12:格式化方法, {0}这种数字只是一个可选选项，但是可以帮助识别第几个参数。
 # age = 20
